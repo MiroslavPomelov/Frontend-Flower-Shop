@@ -16,8 +16,8 @@ WORKDIR /opt/build/flower-shop
 # Показываем содержимое package.json
 RUN cat package.json || echo "package.json not found"
 
-# Устанавливаем зависимости с подробным выводом
-RUN npm ci --verbose
+# Устанавливаем зависимости (используем npm install вместо npm ci)
+RUN npm install --verbose
 
 # Собираем приложение с подробным выводом
 RUN npm run build --verbose
