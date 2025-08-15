@@ -1,0 +1,52 @@
+# Используем базовый образ Timeweb Cloud
+FROM static-advanced-node-12-ng22:latest
+
+# Устанавливаем рабочую директорию
+WORKDIR /opt/build
+
+# Копируем файлы проекта
+COPY . .
+
+# Показываем содержимое для отладки
+RUN echo "=== Current directory ===" && pwd && ls -la
+RUN echo "=== Flower-shop contents ===" && ls -la flower-shop/ || echo "flower-shop directory not found"
+
+# Переходим в папку проекта
+WORKDIR /opt/build/flower-shop
+
+# Показываем содержимое package.json
+RUN echo "=== Package.json contents ===" && cat package.json || echo "package.json not found"
+
+# Очищаем кэш npm
+RUN echo "=== Cleaning npm cache ===" && npm cache clean --force
+
+# Устанавливаем зависимости
+RUN echo "=== Installing dependencies ===" && npm install --legacy-peer-deps
+
+# Собираем приложение
+RUN echo "=== Building application ===" && npm run build
+
+# Проверяем, что приложение собралось
+RUN echo "=== Checking build output ===" && ls -la .next/ || echo ".next directory not found"
+
+# Открываем порт
+EXPOSE 3000
+
+# Устанавливаем переменные окружения
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+ENV NODE_ENV production
+
+# Создаем скрипт запуска для лучшей диагностики
+RUN echo '#!/bin/bash' > /opt/build/start.sh && \
+    echo 'echo "=== Starting application ==="' >> /opt/build/start.sh && \
+    echo 'cd /opt/build/flower-shop' >> /opt/build/start.sh && \
+    echo 'echo "Current directory: $(pwd)"' >> /opt/build/start.sh && \
+    echo 'echo "Directory contents:"' >> /opt/build/start.sh && \
+    echo 'ls -la' >> /opt/build/start.sh && \
+    echo 'echo "Starting Next.js application..."' >> /opt/build/start.sh && \
+    echo 'npm start' >> /opt/build/start.sh && \
+    chmod +x /opt/build/start.sh
+
+# Запускаем приложение через скрипт
+CMD ["/opt/build/start.sh"]

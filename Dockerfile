@@ -16,8 +16,11 @@ WORKDIR /opt/build/flower-shop
 # Показываем содержимое package.json
 RUN cat package.json || echo "package.json not found"
 
+# Очищаем кэш npm
+RUN npm cache clean --force
+
 # Устанавливаем зависимости с подробным выводом
-RUN npm ci --verbose
+RUN npm install --legacy-peer-deps --verbose
 
 # Собираем приложение с подробным выводом
 RUN npm run build --verbose
