@@ -16,6 +16,9 @@ COPY . .
 # Собираем приложение
 RUN npm run build
 
+# Устанавливаем только production зависимости для финального образа
+RUN npm ci --only=production
+
 # Открываем порт
 EXPOSE 3000
 
