@@ -1,5 +1,5 @@
 # Базовый образ с Node.js
-FROM node:18-alpine
+FROM node:alpine
 
 # Устанавливаем рабочую директорию
 WORKDIR /opt/build
