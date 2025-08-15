@@ -4,15 +4,12 @@
   "description": "Flower Shop Frontend Application",
   "main": "index.js",
   "scripts": {
-    "build": "ls -la && pwd && cd flower-shop && ls -la && npm ci && npm run build",
-    "start": "cd flower-shop && npm start",
-    "dev": "cd flower-shop && npm run dev",
-    "install-deps": "cd flower-shop && npm ci",
-    "test": "echo 'Testing...' && ls -la && echo 'Current dir:' && pwd && echo 'flower-shop exists:' && ls -la flower-shop/ || echo 'flower-shop NOT found'"
+    "build": "echo 'Build started' && ls -la && pwd && echo 'Checking flower-shop...' && ls -la flower-shop/ && echo 'Build completed'",
+    "start": "echo 'Start command executed'",
+    "dev": "echo 'Dev command executed'",
+    "test": "echo 'Testing...' && ls -la && pwd && echo 'flower-shop exists:' && ls -la flower-shop/ || echo 'flower-shop NOT found'"
   },
-  "dependencies": {
-    "node": ">=18.0.0"
-  },
+  "dependencies": {},
   "engines": {
     "node": ">=18.0.0"
   },
