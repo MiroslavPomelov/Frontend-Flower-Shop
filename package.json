@@ -4,11 +4,11 @@
   "description": "Flower Shop Frontend Application",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'Build started' && ls -la && pwd && echo 'Checking flower-shop...' && ls -la flower-shop/ && echo 'Build completed'",
-    "start": "echo 'Start command executed'",
-    "dev": "echo 'Dev command executed'",
+    "build": "cd flower-shop && npm ci && npm run build",
+    "start": "cd flower-shop && npm start",
+    "dev": "cd flower-shop && npm run dev",
     "test": "echo 'Testing...' && ls -la && pwd && echo 'flower-shop exists:' && ls -la flower-shop/ || echo 'flower-shop NOT found'",
-    "install-deps": "echo 'Installing dependencies...' && cd flower-shop && echo 'Dependencies installed'"
+    "install-deps": "cd flower-shop && npm ci"
   },
   "dependencies": {
     "node": ">=18.0.0"
