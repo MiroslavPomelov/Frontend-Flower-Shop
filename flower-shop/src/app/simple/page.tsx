@@ -1,7 +1,4 @@
-'use client';
-import React from 'react';
-
-const TestPage: React.FC = () => {
+export default function SimplePage() {
   return (
     <div style={{
       minHeight: '100vh',
@@ -17,10 +14,10 @@ const TestPage: React.FC = () => {
         🌸 Flower Shop
       </h1>
       <p style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
-        Приложение работает успешно!
+        Максимально простая страница
       </p>
       <p style={{ fontSize: '1rem', color: '#ec4899' }}>
-        Next.js + React + TypeScript
+        Без Chakra UI, без роутера, без сложностей
       </p>
       <div style={{ 
         marginTop: '3rem', 
@@ -29,13 +26,11 @@ const TestPage: React.FC = () => {
         borderRadius: '8px',
         textAlign: 'center'
       }}>
-        <p style={{ marginBottom: '1rem' }}>✅ Сборка прошла успешно</p>
-        <p style={{ marginBottom: '1rem' }}>✅ Приложение запустилось</p>
-        <p style={{ marginBottom: '1rem' }}>✅ Страница доступна</p>
-        <p>✅ Навигация работает</p>
+        <p style={{ marginBottom: '1rem' }}>✅ Только React</p>
+        <p style={{ marginBottom: '1rem' }}>✅ Только inline стили</p>
+        <p style={{ marginBottom: '1rem' }}>✅ Никаких зависимостей</p>
+        <p>✅ Должна работать!</p>
       </div>
     </div>
   );
-};
-
-export default TestPage;
+}
