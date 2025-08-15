@@ -1,0 +1,32 @@
+# Timeweb Cloud Configuration
+# Этот файл указывает Timeweb как собирать и запускать приложение
+
+# Команда для сборки
+build_command: "npm run build"
+
+# Команда для запуска
+start_command: "npm start"
+
+# Порт приложения
+port: 3000
+
+# Переменные окружения
+environment:
+  NODE_ENV: "production"
+  PORT: "3000"
+  HOSTNAME: "0.0.0.0"
+
+# Рабочая директория
+workdir: "/opt/build"
+
+# Файлы для копирования
+copy_files:
+  - "package.json"
+  - "package-lock.json"
+  - "next.config.js"
+  - "tsconfig.json"
+  - "tailwind.config.js"
+  - "postcss.config.mjs"
+  - "eslint.config.mjs"
+  - "src/"
+  - "public/"
