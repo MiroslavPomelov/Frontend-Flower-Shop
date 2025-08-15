@@ -4,12 +4,10 @@
   "description": "Flower Shop Frontend Application",
   "main": "index.js",
   "scripts": {
-    "build": "ls -la && cd flower-shop && npm ci && npm run build",
-    "start": "cd flower-shop && npm start",
-    "dev": "cd flower-shop && npm run dev",
-    "install-deps": "cd flower-shop && npm ci",
-    "postinstall": "cd flower-shop && npm ci",
-    "setup": "ls -la && pwd && cd flower-shop && ls -la && npm ci"
+    "build": "bash start.sh",
+    "start": "bash start.sh",
+    "dev": "bash start.sh",
+    "test": "echo 'Testing...' && ls -la && echo 'Current dir:' && pwd"
   },
   "dependencies": {
     "node": ">=18.0.0"
