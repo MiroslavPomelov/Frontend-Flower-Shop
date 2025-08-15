@@ -4,11 +4,11 @@
   "description": "Flower Shop Frontend Application",
   "main": "index.js",
   "scripts": {
-    "build": "cd flower-shop && npm ci && npm run build",
+    "build": "cd flower-shop && npm install --legacy-peer-deps && npm run build",
     "start": "cd flower-shop && npm start",
     "dev": "cd flower-shop && npm run dev",
     "test": "echo 'Testing...' && ls -la && pwd && echo 'flower-shop exists:' && ls -la flower-shop/ || echo 'flower-shop NOT found'",
-    "install-deps": "cd flower-shop && npm ci"
+    "install-deps": "cd flower-shop && npm install --legacy-peer-deps"
   },
   "dependencies": {
     "node": ">=18.0.0"
