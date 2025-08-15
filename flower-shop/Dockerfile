@@ -1,15 +1,14 @@
-# Используем официальный образ Node.js на Alpine (легковесный)
+# Используем официальный образ Node.js
 FROM node:18-alpine AS builder
 
-# Устанавливаем зависимости для работы с пакетами npm
-RUN apk add --no-cache libc6-compat
-
-# Устанавливаем рабочую директорию
+# Устанавливаем рабочую директорию (должна соответствовать вашей структуре)
 WORKDIR /app
 
-# Копируем только файлы, необходимые для установки зависимостей
+# Копируем package.json и package-lock.json сначала
 COPY package.json package-lock.json* ./
-RUN npm ci --omit=dev
+
+# Устанавливаем зависимости
+RUN npm ci
 
 # Копируем остальные файлы проекта
 COPY . .
@@ -17,25 +16,20 @@ COPY . .
 # Собираем приложение
 RUN npm run build
 
-# Используем образ nginx для раздачи статики
-FROM nginx:alpine AS runner
+# Финальный образ
+FROM node:18-alpine AS runner
 
-# Устанавливаем рабочую директорию nginx
-WORKDIR /usr/share/nginx/html
-
-# Удаляем дефолтные файлы nginx
-RUN rm -rf ./*
+# Устанавливаем рабочую директорию
+WORKDIR /app
 
 # Копируем только необходимые файлы из builder
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/package.json /app/package-lock.json ./
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
 
-# Копируем конфиг nginx (если используется)
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Открываем порт 3000 (по умолчанию Next.js)
+# Открываем порт
 EXPOSE 3000
 
-# Запускаем сервер
-CMD ["node", "server.js"]
+# Запускаем приложение
+CMD ["npm", "start"]
