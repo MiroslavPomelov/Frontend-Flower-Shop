@@ -1,0 +1,32 @@
+{
+  "name": "frontend-flower-shop",
+  "version": "1.0.0",
+  "description": "Flower Shop Frontend Application",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd flower-shop && npm ci && npm run build",
+    "start": "cd flower-shop && npm start",
+    "dev": "cd flower-shop && npm run dev",
+    "install-deps": "cd flower-shop && npm ci",
+    "postinstall": "cd flower-shop && npm ci"
+  },
+  "dependencies": {
+    "node": ">=18.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MiroslavPomelov/Frontend-Flower-Shop.git"
+  },
+  "keywords": [
+    "nextjs",
+    "react",
+    "typescript",
+    "flower-shop",
+    "ecommerce"
+  ],
+  "author": "Miroslav Pomelov",
+  "license": "MIT"
+}
