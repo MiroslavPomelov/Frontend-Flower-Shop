@@ -1,0 +1,17 @@
+version: '1.0'
+type: build-from-source
+build:
+  context: .
+  commands:
+    - cd flower-shop
+    - npm ci
+    - npm run build
+run:
+  commands:
+    - cd flower-shop
+    - npm start
+  port: 3000
+environment:
+  NODE_ENV: production
+  PORT: 3000
+  HOSTNAME: 0.0.0.0
