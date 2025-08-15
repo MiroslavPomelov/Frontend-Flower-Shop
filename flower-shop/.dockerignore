@@ -1,0 +1,15 @@
+# Игнорируем ненужные файлы
+**/node_modules
+**/.next
+**/.git
+**/.vercel
+**/.cache
+**/dist
+**/build
+**/*.log
+**/.env*.local
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/.idea
+**/.vscode
