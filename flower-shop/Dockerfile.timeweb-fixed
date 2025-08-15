@@ -5,16 +5,10 @@ FROM final-image-b22ab3d2-57ab-4b0b-8460-810b99b69d7d-code:latest
 WORKDIR /opt/build
 
 # Переходим в папку проекта (ВАЖНО!)
-RUN cd flower-shop
+WORKDIR /opt/build/flower-shop
 
-# Копируем package.json и package-lock.json сначала
-COPY flower-shop/package*.json ./
-
-# Устанавливаем ВСЕ зависимости (включая devDependencies для сборки)
+# Устанавливаем зависимости
 RUN npm ci
-
-# Копируем исходный код из папки flower-shop
-COPY flower-shop/ ./
 
 # Собираем приложение
 RUN npm run build
