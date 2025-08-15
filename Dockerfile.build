@@ -1,7 +1,7 @@
 # Используем базовый образ Timeweb Cloud
 FROM static-advanced-node-12-ng22:latest
 
-# Устанавливаем рабочую директорию (как требует Timeweb)
+# Устанавливаем рабочую директорию
 WORKDIR /opt/build
 
 # Копируем файлы проекта
