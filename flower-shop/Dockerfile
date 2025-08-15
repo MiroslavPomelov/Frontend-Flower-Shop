@@ -1,34 +1,23 @@
-# Установка зависимостей
-FROM node:alpine
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+# Базовый образ с Node.js
+FROM node:18-alpine
 
-# Сборка приложения
+# Устанавливаем рабочую директорию
+WORKDIR /opt/build
 
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+# Копируем package.json и package-lock.json в первую очередь
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install
+
+# Копируем ВСЕ остальные файлы проекта
 COPY . .
+
+# Собираем приложение (если нужно)
 RUN npm run build
 
-# Финальный образ
-
-WORKDIR /app
-
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-
+# Указываем порт
 EXPOSE 3000
-ENV PORT 3000
 
-CMD ["node", "server.js"]
+# Команда для запуска приложения
+CMD ["npm", "run", "dev"]
