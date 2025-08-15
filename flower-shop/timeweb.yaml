@@ -1,0 +1,39 @@
+# Timeweb Cloud Configuration
+version: "1.0"
+project:
+  name: "flower-shop"
+  type: "nextjs"
+  context: "flower-shop/"
+
+build:
+  base_image: "final-image-b22ab3d2-57ab-4b0b-8460-810b99b69d7d-code:latest"
+  workdir: "/opt/build"
+  commands:
+    - "npm ci"
+    - "npm run build"
+  start_command: "npm start"
+
+environment:
+  NODE_ENV: "production"
+  PORT: "3000"
+  HOSTNAME: "0.0.0.0"
+
+ports:
+  - "3000:3000"
+
+files:
+  include:
+    - "package.json"
+    - "package-lock.json"
+    - "next.config.js"
+    - "tsconfig.json"
+    - "tailwind.config.js"
+    - "postcss.config.mjs"
+    - "eslint.config.mjs"
+    - "src/"
+    - "public/"
+  exclude:
+    - "node_modules"
+    - ".next"
+    - ".git"
+    - "*.md"

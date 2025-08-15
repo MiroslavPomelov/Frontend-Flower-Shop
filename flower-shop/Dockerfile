@@ -1,7 +1,7 @@
-# Используем официальный образ Node.js
-FROM node:18-alpine
+# Используем базовый образ Timeweb Cloud
+FROM final-image-b22ab3d2-57ab-4b0b-8460-810b99b69d7d-code:latest
 
-# Устанавливаем рабочую директорию (совместимо с Timeweb)
+# Устанавливаем рабочую директорию (как требует Timeweb)
 WORKDIR /opt/build
 
 # Копируем package.json и package-lock.json сначала
