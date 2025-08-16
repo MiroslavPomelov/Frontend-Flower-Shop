@@ -6,9 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "80:80"
+    volumes:
+      - ./flower-shop:/usr/share/nginx/html:ro
+    restart: unless-stopped
     environment:
       - NODE_ENV=production
-      - PORT=3000
-      - HOSTNAME=0.0.0.0
-    restart: unless-stopped
+      - PORT=80

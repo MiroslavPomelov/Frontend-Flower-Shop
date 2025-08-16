@@ -1,10 +1,50 @@
-# Исключаем ненужные файлы из Docker контекста
-node_modules
-.next
-.git
-.env*
+# Исключаем все, кроме HTML файлов
+# Это заставит Timeweb использовать только статические файлы
+
+# Исходный код Next.js
+src/
+*.tsx
+*.ts
+*.js
+*.jsx
+
+# Зависимости
+node_modules/
+package*.json
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.DS_Store
-*.tsbuildinfo
+
+# Конфигурация Next.js
+.next/
+next.config.js
+.eslintrc*
+
+# Документация
+*.md
+README*
+TIMEWEB_*
+FINAL_*
+FIX_*
+NEXTJS_*
+QUICK_*
+WAIT_*
+
+# Скрипты
+*.bat
+*.sh
+deploy-*
+fix-*
+build-*
+start.*
+
+# Другие Dockerfile
+Dockerfile.*
+docker-compose.yml
+
+# Git
+.git/
+.gitignore
+
+# Временные файлы
+*.log
+*.tmp
+.cache/

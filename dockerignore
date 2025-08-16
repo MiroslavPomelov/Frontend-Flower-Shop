@@ -1,0 +1,16 @@
+# Дополнительный dockerignore файл
+# Исключаем все лишнее
+
+src/
+*.tsx
+*.ts
+*.js
+*.jsx
+node_modules/
+package*.json
+.next/
+next.config.js
+*.md
+*.bat
+*.sh
+.git/
