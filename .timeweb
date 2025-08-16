@@ -1,17 +1,24 @@
-version: '1.0'
-type: build-from-source
-build:
-  context: .
-  commands:
-    - cd flower-shop
-    - npm ci
-    - npm run build
-run:
-  commands:
-    - cd flower-shop
-    - npm start
-  port: 3000
+# Timeweb Cloud Configuration
+# Этот файл указывает Timeweb как собирать и запускать приложение
+
+# Тип развертывания
+deploy_type: docker
+
+# Dockerfile для использования
+dockerfile: Dockerfile
+
+# Порт для приложения
+port: 80
+
+# Переменные окружения
 environment:
   NODE_ENV: production
-  PORT: 3000
-  HOSTNAME: 0.0.0.0
+  PORT: 80
+
+# Рабочая директория
+workdir: .
+
+# Файлы для копирования
+copy_files:
+  - flower-shop/
+  - Dockerfile

@@ -1,37 +1,13 @@
-# Используем базовый образ Timeweb Cloud
-FROM static-advanced-node-12-ng22:latest
+FROM nginx:alpine
 
-# Устанавливаем рабочую директорию
-WORKDIR /opt/build
+# Копируем статические HTML файлы
+COPY flower-shop/ /usr/share/nginx/html/
 
-# Копируем файлы проекта
-COPY . .
+# Копируем конфигурацию nginx
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Показываем содержимое для отладки
-RUN ls -la && echo "=== Flower-shop contents ===" && ls -la flower-shop/ || echo "flower-shop directory not found"
+# Открываем порт 80
+EXPOSE 80
 
-# Переходим в папку проекта
-WORKDIR /opt/build/flower-shop
-
-# Показываем содержимое package.json
-RUN cat package.json || echo "package.json not found"
-
-# Очищаем кэш npm
-RUN npm cache clean --force
-
-# Устанавливаем зависимости с подробным выводом
-RUN npm install --legacy-peer-deps --verbose
-
-# Собираем приложение с подробным выводом
-RUN npm run build --verbose
-
-# Открываем порт
-EXPOSE 3000
-
-# Устанавливаем переменные окружения
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
-ENV NODE_ENV production
-
-# Запускаем приложение
-CMD ["npm", "start"]
+# Запускаем nginx
+CMD ["nginx", "-g", "daemon off;"]
