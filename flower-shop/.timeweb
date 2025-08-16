@@ -2,8 +2,8 @@
 # Этот файл указывает Timeweb как собирать и запускать приложение
 
 # Команда для сборки
-build_command: echo "Static files ready"
-start_command: echo "Starting server" && python3 -m http.server 3000
+build_command: echo "Files ready"
+start_command: echo "Server started"
 port: 3000
 environment:
   NODE_ENV: production

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Тест - Flower Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #feca57;
+            margin-bottom: 20px;
+        }
+        .status {
+            background: #4ade80;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .links {
+            margin-top: 30px;
+        }
+        .links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+        .links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Тестовая страница</h1>
+        <p>Если вы видите эту страницу, значит Timeweb Cloud работает правильно!</p>
+        
+        <div class="status">
+            ✅ Сайт успешно развернут!
+        </div>
+        
+        <p>Теперь вы можете перейти на основные страницы:</p>
+        
+        <div class="links">
+            <a href="/">🏠 Главная</a>
+            <a href="/cart">🛒 Корзина</a>
+            <a href="/login">🔐 Вход</a>
+            <a href="/profile">👤 Профиль</a>
+            <a href="/checkout">💳 Заказ</a>
+        </div>
+        
+        <div style="margin-top: 30px; opacity: 0.8; font-size: 0.9rem;">
+            <p><strong>Время загрузки:</strong> <span id="loadTime"></span></p>
+            <p><strong>Статус:</strong> Работает</p>
+        </div>
+    </div>
+    
+    <script>
+        // Показываем время загрузки
+        document.getElementById('loadTime').textContent = new Date().toLocaleTimeString();
+        
+        // Проверяем доступность других страниц
+        const pages = ['/', '/cart', '/login', '/profile', '/checkout'];
+        pages.forEach(page => {
+            fetch(page)
+                .then(response => {
+                    if (response.ok) {
+                        console.log(`✅ ${page} доступен`);
+                    }
+                })
+                .catch(error => {
+                    console.log(`❌ ${page} недоступен:`, error);
+                });
+        });
+    </script>
+</body>
+</html>
