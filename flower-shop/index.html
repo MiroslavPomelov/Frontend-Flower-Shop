@@ -60,14 +60,19 @@
             statusDiv.innerHTML = '🔍 Проверяем приложение...';
             
             // Пробуем подключиться к Next.js приложению
-            fetch('http://localhost:3000', { 
+            const currentDomain = window.location.hostname;
+            const protocol = window.location.protocol;
+            const port = window.location.port ? `:${window.location.port}` : '';
+            const appUrl = `${protocol}//${currentDomain}${port}`;
+            
+            fetch(appUrl, { 
                 mode: 'no-cors',
                 timeout: 5000 
             })
             .then(() => {
                 statusDiv.innerHTML = '✅ Приложение доступно! Перенаправляем...';
                 // Перенаправляем на Next.js приложение
-                window.location.href = 'http://localhost:3000';
+                window.location.href = appUrl;
             })
             .catch((error) => {
                 console.log('Приложение еще не готово:', error);
