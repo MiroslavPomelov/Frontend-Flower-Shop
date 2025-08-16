@@ -1,0 +1,17 @@
+{
+  "name": "flower-shop-static",
+  "version": "1.0.0",
+  "description": "Flower Shop - Static HTML Version",
+  "scripts": {
+    "build": "echo 'Static HTML files are ready'",
+    "start": "npx http-server . -p 3000 -o",
+    "dev": "npx http-server . -p 3000 -o"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "devDependencies": {},
+  "keywords": ["flower", "shop", "static", "html"],
+  "author": "Flower Shop Team",
+  "license": "MIT"
+}

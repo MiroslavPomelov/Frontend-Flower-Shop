@@ -2,8 +2,8 @@
 # Этот файл указывает Timeweb как собирать и запускать приложение
 
 # Команда для сборки
-build_command: cd flower-shop && npm install --legacy-peer-deps && npm run build
-start_command: cd flower-shop && npm start
+build_command: echo "Static HTML files are ready" && ls -la
+start_command: npx http-server . -p 3000 -o
 port: 3000
 environment:
   NODE_ENV: production
@@ -12,5 +12,4 @@ environment:
 workdir: .
 copy_files:
   - flower-shop/
-  - package.json
-  - package-lock.json
+  - package-static.json
