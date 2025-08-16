@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💳 Оформление заказа - Flower Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .checkout-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #feca57;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #feca57;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-group select option {
+            background: #4a5568;
+            color: white;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: #feca57;
+            background: rgba(254, 202, 87, 0.1);
+        }
+        
+        .payment-method.selected {
+            border-color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        
+        .payment-method input {
+            display: none;
+        }
+        
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .order-summary {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-image {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .item-price {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #feca57;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 15px;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #4ade80, #22c55e);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 20px;
+        }
+        
+        .checkout-btn:hover {
+            transform: scale(1.02);
+        }
+        
+        .demo-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+        
+        .demo-info strong {
+            color: #feca57;
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/cart" class="back-btn">← Назад к корзине</a>
+            <div class="logo">🌸 Flower Shop</div>
+            <h1>💳 Оформление заказа</h1>
+        </div>
+        
+        <div class="checkout-grid">
+            <div class="checkout-left">
+                <div class="checkout-section">
+                    <h3 class="section-title">👤 Контактная информация</h3>
+                    <form id="checkoutForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Имя *</label>
+                                <input type="text" id="firstName" placeholder="Иван" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Фамилия *</label>
+                                <input type="text" id="lastName" placeholder="Иванов" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" placeholder="ivan@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Телефон *</label>
+                                <input type="tel" id="phone" placeholder="+7 (999) 123-45-67" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="checkout-section">
+                    <h3 class="section-title">📍 Адрес доставки</h3>
+                    <div class="form-group">
+                        <label for="address">Полный адрес *</label>
+                        <textarea id="address" rows="3" placeholder="Введите полный адрес доставки" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Примечания к доставке</label>
+                        <textarea id="notes" rows="2" placeholder="Дополнительная информация для курьера"></textarea>
+                    </div>
+                </div>
+                
+                <div class="checkout-section">
+                    <h3 class="section-title">🚚 Способ доставки</h3>
+                    <div class="form-group">
+                        <select id="deliveryMethod">
+                            <option value="standard">Стандартная доставка (1-2 дня) - Бесплатно</option>
+                            <option value="express">Экспресс доставка (в день заказа) - 500 ₽</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="checkout-section">
+                    <h3 class="section-title">💳 Способ оплаты</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="selectPayment('card')">
+                            <input type="radio" name="payment" value="card" id="card" checked>
+                            <div class="payment-icon">💳</div>
+                            <div>Банковская карта</div>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('cash')">
+                            <input type="radio" name="payment" value="cash" id="cash">
+                            <div class="payment-icon">💰</div>
+                            <div>Наличными</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkout-right">
+                <div class="checkout-section order-summary">
+                    <h3 class="section-title">📋 Сводка заказа</h3>
+                    
+                    <div class="order-item">
+                        <div class="item-image">🌹</div>
+                        <div class="item-details">
+                            <div class="item-name">Букет "Весенняя свежесть"</div>
+                            <div class="item-price">1 × 2,500 ₽</div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-item">
+                        <div class="item-image">🌷</div>
+                        <div class="item-details">
+                            <div class="item-name">Розы красные (11 штук)</div>
+                            <div class="item-price">2 × 1,800 ₽</div>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Товары (3):</span>
+                        <span>6,100 ₽</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Доставка:</span>
+                        <span id="deliveryCost">Бесплатно</span>
+                    </div>
+                    
+                    <div class="summary-row total">
+                        <span>К оплате:</span>
+                        <span id="totalAmount">6,100 ₽</span>
+                    </div>
+                    
+                    <button class="checkout-btn" onclick="placeOrder()">Оформить заказ</button>
+                    
+                    <div class="demo-info">
+                        <strong>Демо-режим:</strong> Это статическая страница для демонстрации на Timeweb Cloud
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function selectPayment(method) {
+            // Убираем выделение со всех методов
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Выделяем выбранный метод
+            if (method === 'card') {
+                document.getElementById('card').checked = true;
+                document.querySelector('.payment-method:first-child').classList.add('selected');
+            } else {
+                document.getElementById('cash').checked = true;
+                document.querySelector('.payment-method:last-child').classList.add('selected');
+            }
+        }
+        
+        // Инициализируем выделение карты
+        selectPayment('card');
+        
+        // Обработчик изменения способа доставки
+        document.getElementById('deliveryMethod').addEventListener('change', function() {
+            const deliveryCost = this.value === 'express' ? '500 ₽' : 'Бесплатно';
+            const totalAmount = this.value === 'express' ? '6,600 ₽' : '6,100 ₽';
+            
+            document.getElementById('deliveryCost').textContent = deliveryCost;
+            document.getElementById('totalAmount').textContent = totalAmount;
+        });
+        
+        function placeOrder() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            
+            if (!firstName || !lastName || !email || !phone || !address) {
+                alert('Пожалуйста, заполните все обязательные поля!');
+                return;
+            }
+            
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            const deliveryMethod = document.getElementById('deliveryMethod').value;
+            
+            alert(`Демо-режим: Заказ оформлен!\n\nИмя: ${firstName} ${lastName}\nEmail: ${email}\nТелефон: ${phone}\nАдрес: ${address}\nСпособ доставки: ${deliveryMethod}\nСпособ оплаты: ${paymentMethod === 'card' ? 'Банковская карта' : 'Наличными'}\n\nСумма: ${document.getElementById('totalAmount').textContent}`);
+        }
+    </script>
+</body>
+</html>

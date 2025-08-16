@@ -2,31 +2,15 @@
 # Этот файл указывает Timeweb как собирать и запускать приложение
 
 # Команда для сборки
-build_command: "npm run build"
-
-# Команда для запуска
-start_command: "npm start"
-
-# Порт приложения
+build_command: cd flower-shop && npm install --legacy-peer-deps && npm run build
+start_command: cd flower-shop && npm start
 port: 3000
-
-# Переменные окружения
 environment:
-  NODE_ENV: "production"
-  PORT: "3000"
-  HOSTNAME: "0.0.0.0"
-
-# Рабочая директория
-workdir: "/opt/build"
-
-# Файлы для копирования
+  NODE_ENV: production
+  PORT: 3000
+  HOSTNAME: 0.0.0.0
+workdir: .
 copy_files:
-  - "package.json"
-  - "package-lock.json"
-  - "next.config.js"
-  - "tsconfig.json"
-  - "tailwind.config.js"
-  - "postcss.config.mjs"
-  - "eslint.config.mjs"
-  - "src/"
-  - "public/"
+  - flower-shop/
+  - package.json
+  - package-lock.json

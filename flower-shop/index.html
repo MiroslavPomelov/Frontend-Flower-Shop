@@ -1,109 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flower Shop - Loading...</title>
+    <title>🌸 Flower Shop - Цветочный магазин</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .loading {
-            text-align: center;
-        }
-        .spinner {
-            border: 4px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top: 4px solid white;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .error {
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid rgba(255, 0, 0, 0.3);
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+            flex: 1;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .nav-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffd93d;
+        }
+        
+        .nav-card p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .nav-card a {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+        
+        .nav-card a:hover {
+            transform: scale(1.05);
+        }
+        
+        .status {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .status.success {
+            border-color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="loading">
-        <h1>🌸 Flower Shop</h1>
-        <div class="spinner"></div>
-        <p>Приложение загружается...</p>
-        <p>Проверяем доступность Next.js приложения...</p>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🌸 Flower Shop</div>
+            <div class="subtitle">Добро пожаловать в мир прекрасных цветов!</div>
+        </div>
         
-        <div id="status" style="margin-top: 20px;"></div>
-        <div id="error" class="error" style="display: none;"></div>
+        <div class="status success">
+            ✅ Приложение успешно запущено на Timeweb Cloud!
+        </div>
+        
+        <div class="nav-grid">
+            <div class="nav-card">
+                <h3>🏠 Главная страница</h3>
+                <p>Полноценная главная страница с красивым дизайном</p>
+                <a href="/home">Перейти</a>
+            </div>
+            
+            <div class="nav-card">
+                <h3>🔧 Диагностика</h3>
+                <p>Страница для проверки работоспособности приложения</p>
+                <a href="/debug">Перейти</a>
+            </div>
+            
+            <div class="nav-card">
+                <h3>📊 Статус</h3>
+                <p>Информация о состоянии системы</p>
+                <a href="/status">Перейти</a>
+            </div>
+            
+            <div class="nav-card">
+                <h3>📄 Простая страница</h3>
+                <p>Минималистичная страница для тестирования</p>
+                <a href="/simple">Перейти</a>
+            </div>
+            
+            <div class="nav-card">
+                <h3>🧪 Тестовая страница</h3>
+                <p>Страница для проверки функциональности</p>
+                <a href="/test">Перейти</a>
+            </div>
+            
+            <div class="nav-card">
+                <h3>💳 Корзина</h3>
+                <p>Управление товарами в корзине</p>
+                <a href="/cart">Перейти</a>
+            </div>
+            
+            <div class="nav-card">
+                <h3>🔐 Авторизация</h3>
+                <p>Вход и регистрация пользователей</p>
+                <a href="/login">Перейти</a>
+            </div>
+            
+            <div class="nav-card">
+                <h3>👤 Профиль</h3>
+                <p>Личный кабинет пользователя</p>
+                <a href="/profile">Перейти</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🌸 Flower Shop - Создаем красоту каждый день</p>
+            <p>Разработано для Timeweb Cloud</p>
+        </div>
     </div>
-    
-    <script>
-        const statusDiv = document.getElementById('status');
-        const errorDiv = document.getElementById('error');
-        
-        // Проверяем доступность приложения на порту 3000
-        function checkApp() {
-            statusDiv.innerHTML = '🔍 Проверяем приложение...';
-            
-            // Пробуем подключиться к Next.js приложению
-            const currentDomain = window.location.hostname;
-            const protocol = window.location.protocol;
-            const port = window.location.port ? `:${window.location.port}` : '';
-            const appUrl = `${protocol}//${currentDomain}${port}`;
-            
-            fetch(appUrl, { 
-                mode: 'no-cors',
-                timeout: 5000 
-            })
-            .then(() => {
-                statusDiv.innerHTML = '✅ Приложение доступно! Перенаправляем...';
-                // Перенаправляем на Next.js приложение
-                window.location.href = appUrl;
-            })
-            .catch((error) => {
-                console.log('Приложение еще не готово:', error);
-                statusDiv.innerHTML = '⏳ Приложение еще не готово. Повторная проверка через 5 секунд...';
-                
-                // Повторная проверка через 5 секунд
-                setTimeout(checkApp, 5000);
-            });
-        }
-        
-        // Начинаем проверку через 2 секунды
-        setTimeout(checkApp, 2000);
-        
-        // Альтернативный способ - проверка по WebSocket или другим методам
-        setTimeout(() => {
-            if (statusDiv.innerHTML.includes('не готово')) {
-                errorDiv.style.display = 'block';
-                errorDiv.innerHTML = `
-                    <h3>🚨 Приложение не запустилось</h3>
-                    <p>Проверьте:</p>
-                    <ul>
-                        <li>Команды сборки и запуска в Timeweb Cloud</li>
-                        <li>Порт 3000 должен быть открыт</li>
-                        <li>Переменные окружения настроены</li>
-                    </ul>
-                    <p><strong>Рекомендуемые команды:</strong></p>
-                    <p>Build: <code>cd flower-shop && npm ci && npm run build</code></p>
-                    <p>Start: <code>cd flower-shop && npm start</code></p>
-                `;
-            }
-        }, 30000); // 30 секунд
-    </script>
 </body>
 </html>
