@@ -1,32 +1,19 @@
 {
-  "name": "frontend-flower-shop",
+  "name": "flower-shop-timeweb",
   "version": "1.0.0",
-  "description": "Flower Shop Frontend Application",
+  "description": "Flower Shop - Static HTML for Timeweb Cloud",
   "main": "index.js",
   "scripts": {
-    "build": "cd flower-shop && npm install --legacy-peer-deps && npm run build",
-    "start": "cd flower-shop && npm start",
-    "dev": "cd flower-shop && npm run dev",
-    "test": "echo 'Testing...' && ls -la && pwd && echo 'flower-shop exists:' && ls -la flower-shop/ || echo 'flower-shop NOT found'",
-    "install-deps": "cd flower-shop && npm install --legacy-peer-deps"
+    "build": "echo 'Static HTML files are ready' && ls -la flower-shop/",
+    "start": "echo 'Server started by Timeweb Cloud'",
+    "dev": "echo 'Development mode - use Timeweb Cloud'"
   },
-  "dependencies": {
-    "node": ">=18.0.0"
-  },
+  "keywords": ["flower", "shop", "static", "html", "timeweb"],
+  "author": "Flower Shop Team",
+  "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MiroslavPomelov/Frontend-Flower-Shop.git"
-  },
-  "keywords": [
-    "nextjs",
-    "react",
-    "typescript",
-    "flower-shop",
-    "ecommerce"
-  ],
-  "author": "Miroslav Pomelov",
-  "license": "MIT"
+  "dependencies": {},
+  "devDependencies": {}
 }
