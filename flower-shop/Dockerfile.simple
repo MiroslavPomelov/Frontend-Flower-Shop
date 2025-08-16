@@ -1,24 +1,12 @@
-FROM node:18-alpine
+FROM python:3.9-alpine
 
-WORKDIR /opt/build
+WORKDIR /app
 
-# Копируем package.json и package-lock.json
-COPY package*.json ./
-
-# Устанавливаем зависимости
-RUN npm install --legacy-peer-deps
-
-# Копируем исходный код
-COPY . .
-
-# Переходим в папку flower-shop
-WORKDIR /opt/build/flower-shop
-
-# Собираем приложение
-RUN npm run build
+# Копируем HTML файлы
+COPY flower-shop/ .
 
 # Открываем порт
 EXPOSE 3000
 
-# Запускаем приложение
-CMD ["npm", "start"]
+# Запускаем простой HTTP сервер
+CMD ["python3", "-m", "http.server", "3000"]

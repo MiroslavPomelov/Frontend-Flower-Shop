@@ -2,14 +2,12 @@
 # Этот файл указывает Timeweb как собирать и запускать приложение
 
 # Команда для сборки
-build_command: echo "Static HTML files are ready" && ls -la
-start_command: npx http-server . -p 3000 -o
+build_command: echo "Static files ready"
+start_command: echo "Starting server" && python3 -m http.server 3000
 port: 3000
 environment:
   NODE_ENV: production
   PORT: 3000
-  HOSTNAME: 0.0.0.0
 workdir: .
 copy_files:
   - flower-shop/
-  - package-static.json
